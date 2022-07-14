@@ -6,8 +6,11 @@
       <h2 class="font-bold">{{ currentMonthName }}</h2>
       <h2 class="mx-2 font-bold">{{ currentYear }}</h2>
     </section>
+
     <section class="flex">
-      <p class="text-center w-[14.28%]" v-for="day in days" :key="day">{{ day }}</p>
+      <p class="text-center w-[14.28%]" v-for="day in days" :key="day">
+        {{ day }}
+      </p>
     </section>
     <section class="flex flex-wrap my-2">
       <p class="text-center w-[14.28%]" v-for="num in startDay()" :key="num">
@@ -67,11 +70,15 @@ export default {
         this.currentMonth--;
       }
     },
-    currentDateClass(num){
-        const fullMonth = new Date(this.currentYear, this.currentMonth-1, num).toDateString();
-        const toDay = new Date().toDateString();
-        return fullMonth ==toDay ? "bg-green-500 text-white rounded-lg w-auto": " ";
-    }
+    currentDateClass(num) {
+      const fullMonth = new Date(
+        this.currentYear,
+        this.currentMonth - 1,
+        num
+      ).toDateString();
+      const toDay = new Date().toDateString();
+      return fullMonth == toDay ? "bg-green-500 text-white rounded-lg" : " ";
+    },
   },
   computed: {
     currentMonthName() {
