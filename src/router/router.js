@@ -1,17 +1,21 @@
-import {createRouter, createWebHashHistory} from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 
 import DcHeros from "../components/DCHeros.vue"
 import Calendar from "../components/Calendar.vue"
+import Markdown from "../components/Markdown.vue"
+import Slider from "../components/Slider.vue"
 
-const routes = [
-    {path: '/', component:DcHeros},
-    {path: '/dcheros', component:DcHeros},
-    {path: '/calendar', component:Calendar}
+export const routes = [
+    {path: '/', component:DcHeros, name:"Home"},
+    {path: '/dcheros', component:DcHeros, name:"DC Heros"},
+    {path: '/calendar', component:Calendar,  name:"Calendar"},
+    {path: '/Markdown', component:Markdown,  name:"Markdown "},
+    {path: '/slider', component:Slider,  name:"Slider "}
 ]
 
 const router = createRouter({
     routes,
-    history:createWebHashHistory()
+    history:createWebHistory()
 });
 
 export default router;

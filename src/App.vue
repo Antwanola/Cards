@@ -17,7 +17,6 @@ export default {
 <div class="w-full flex">
   <!-- <DCHeros/> -->
 <router-view></router-view>
-
 </div>
 </template>
 
