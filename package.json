@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "marked": "^4.0.18",
     "vue": "^3.2.25",
     "vue-router": "^4.1.2"
   },

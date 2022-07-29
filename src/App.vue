@@ -1,22 +1,26 @@
 <script >
-// import DCHeros from './components/DCHeros.vue';
 import Header from './components/Header.vue';
-import Calendar from './components/Calendar.vue';
+import Login from './components/Login.vue';
+
 export default {
   components:{
-    // DCHeros,
     Header,
-    Calendar
+    Login,
+},
+data(){
+  return {
+    isOpen: false
+  }
 }
 }   
   
 </script>
 
 <template >
-<Header/>
-<div class="w-full flex">
-  <!-- <DCHeros/> -->
+<Header @open-modal="isOpen = true"/>
+<div class="flex w-full ">
 <router-view></router-view>
+<Login @close="isOpen = false" v-if="isOpen"/>
 </div>
 </template>
 
