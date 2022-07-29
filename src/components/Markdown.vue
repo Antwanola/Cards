@@ -9,6 +9,7 @@
           class="h-full w-full"
           name=""
           id="txt"
+          ref="marked"
         ></textarea>
       </article>
 
@@ -19,6 +20,7 @@
 
 <script>
 import debounce from '../Utils/mixins/debounce'
+import {marked} from 'marked'
 export default {
     mixins:[debounce],
   data() {
@@ -26,6 +28,10 @@ export default {
       text: "",
       timeout: "",
     };
+  },
+  mounted(){
+    this.$refs.marked.focus();
+
   },
   methods: {
     update(e) {
@@ -37,7 +43,7 @@ export default {
   },
   computed: {
     markedTxt() {
-      return this.text;
+      return marked(this.text);
     },
   },
 };

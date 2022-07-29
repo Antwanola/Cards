@@ -17,7 +17,7 @@
           </span>
       </li>
     </ul>
-    <input class="border-4 rounded-lg" v-model.lazy="inputVal" />
+    <input class="border-4 rounded-lg" v-model="inputVal" ref="inputRef"/>
     <button
       class="bg-[#000] rounded-lg h-auto w-32 ml-6 text-white"
       @click="addHero"
@@ -34,37 +34,51 @@
 
 //script
 <script>
+import {computed, onMounted, ref} from 'vue'
 export default {
   name: "DCHeros",
 
-  data: () => {
-    return {
-      inputVal: "",
-      dcHeros: [
+setup(){
+    const inputRef = ref('');  
+     const inputVal = ref('');
+     const dcHeros = ref([
         { name: "Batman" },
         { name: "Iron man" },
         { name: "Superman" },
         { name: "Cat woman" },
         { name: "Dr Manhattan" },
-      ],
-    };
-  },
-  methods: {
-    addHero() {
-      if (this.inputVal !== "") {
-        this.dcHeros.push({ name: this.inputVal });
-        this.inputVal = "";
+      ]);
+
+    const addHero = ()=> {
+      if (inputVal.value !=="") {
+        dcHeros.value.push({ name: inputVal.value });
+        inputVal.value = "";
       }
-    },
-    remove(index) {
-      this.dcHeros.splice(index, 1);
+    };
+
+    const remove = (index) => {
+      dcHeros.value.splice(index, 1);
       // console.log(this.dcHeros.filter((hero,i)=> i!=index))
-    },
-  },
-  computed: {
-    count() {
-      return this.dcHeros.length;
-    },
-  },
+    };
+
+    onMounted(()=>{
+      inputRef.value.focus();
+
+    })
+
+    const count =computed({
+      get:()=>dcHeros.value.length
+    })
+
+    // computed(()=>{
+    
+    //   return this.dcHeros.length;
+    // })
+
+
+return {dcHeros,inputVal,inputRef, addHero, remove, count }
+},
+  
+
 };
 </script>
